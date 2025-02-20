@@ -1,14 +1,19 @@
 import { Button, FormControl, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 
 export default function Auth() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
+    const {logIn} = useAuthContext()
 
     const LogIn = () =>{
-        email && password ? navigate("/home") : alert("Introduce ambos datos")
+      if( email && password ){
+        logIn({email, password})
+        navigate("/home")
+      } else{ alert("Introduce ambos datos") }
 
     }
   return (
