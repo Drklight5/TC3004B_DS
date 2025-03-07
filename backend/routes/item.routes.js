@@ -3,7 +3,7 @@ import { deleteItem, getItem, getItems, postItem, putItem } from "../controllers
 
 const routerItem = Router()
 
-routerItem.get("/items", getItems )
+routerItem.get("/item", getItems )
 routerItem.get("/item/:id", getItem)
 routerItem.post("/item", postItem)
 routerItem.put("/item/:id", putItem)

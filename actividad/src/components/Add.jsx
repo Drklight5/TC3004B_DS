@@ -1,22 +1,16 @@
 import { useState } from "react";
-import Item from "../interface/Item";
 
-interface AddProps {
-  add: (nuevo: Item) => void;
-}
-
-export default function Add({ add }: AddProps) {
+export default function Add({ add }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !number) return;
 
-    const newItem: Item = {
-      id: Date.now(), // Generar un ID único
-      name,
-      number,
+    const newItem = {
+      Nombre: name,
+      Price: number,
     };
 
     add(newItem);

@@ -1,7 +1,7 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./components/Header";
-import Main from "./pages/Main/Main";
+import Main from "./pages/Main/Main.jsx";
 import { useAuthContext } from "./context/AuthContext";
 import Items from "./pages/Items/Items";
 

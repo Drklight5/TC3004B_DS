@@ -1,0 +1,26 @@
+USE StoreDW;
+
+CREATE TABLE Users(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	Nombre NVARCHAR(100) NOT NULL, 
+	Username NVARCHAR(50) NOT NULL, 
+	Password NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Items(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	Nombre NVARCHAR(50) NOT NULL, 
+	Price Money NOT NULL
+);
+
+INSERT INTO Users (Nombre, Username, Password) 
+VALUES ('Valeria', 'Drklight5', '123');
+
+
+
+USE StoreDW;
+GO
+CREATE USER tarea FOR LOGIN tarea;
+GO
+ALTER ROLE db_owner ADD MEMBER tarea;
+GO

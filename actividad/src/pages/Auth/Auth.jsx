@@ -2,6 +2,7 @@ import { Button, FormControl, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
+import { login } from "../../services/auth";
 
 export default function Auth() {
     const [email, setEmail] = useState("")
@@ -9,10 +10,18 @@ export default function Auth() {
     const navigate = useNavigate()
     const {logIn} = useAuthContext()
 
-    const LogIn = () =>{
+    const LogIn = async  () =>{
       if( email && password ){
-        logIn({email, password})
-        navigate("/home")
+        let response = await login(email, password)
+        console.log(response)
+        if (response.user) {
+          logIn({email, password})
+          navigate("/home")
+        }
+        else{
+          alert("Credenciales incorrectas")
+        }
+        
       } else{ alert("Introduce ambos datos") }
 
     }

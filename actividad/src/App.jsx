@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Auth from "./pages/Auth/Auth";
-import Core from "./Core";
-import AuthProvider from "./context/AuthContext";
+import Auth from "./pages/Auth/Auth.jsx";
+import Core from "./Core.jsx";
+import AuthProvider from "./context/AuthContext.jsx";
 
 
 function App() {
