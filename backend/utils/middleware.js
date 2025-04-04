@@ -7,8 +7,9 @@ export const authenticateToken = (req, res, next) => {
   if (!token) return res.sendStatus(401); // No autorizado
 
   jwt.verify(token, process.env.JWT_SECRET || "defaultsecret", (err, user) => {
+    //console.log(err)
     if (err) return res.sendStatus(403); // Token inválido
-    req.user = user; // Agrega info del usuario al request
+    req.user = user;
     next();
   });
 };
