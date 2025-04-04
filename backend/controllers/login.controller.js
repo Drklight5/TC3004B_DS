@@ -2,7 +2,7 @@ import { sqlConfig, promise }from "../utils/mssql.js"
 import sql from "mssql";
 import crypto from "crypto";
 import dotenv from "dotenv";
-
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -36,17 +36,26 @@ export const postLogin = async (req, res) => {
     }
 
     const user = result.recordset[0];
-    console.log(user, user.Salt, user.Password)
+    console.log(user, user.Salt, user.Password);
     const hashedInputPassword = hashPassword(Password, user.Salt);
 
     if (hashedInputPassword !== user.Password) {
       return res.status(401).json({ message: "Credenciales incorrectas" });
     }
 
+    // Generar el token
+    const token = jwt.sign(
+      { id: user.ID, username: user.Username }, // payload
+      process.env.JWT_SECRET || "defaultsecret", // clave secreta
+      { expiresIn: "2h" } // duración
+    );
+
     res.json({
       message: "Login exitoso",
+      token,
       user: { id: user.ID, nombre: user.Nombre, username: user.Username },
     });
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
