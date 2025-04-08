@@ -12,5 +12,8 @@ export const login = async (user, password) => {
 
   const data = await response.json(); 
   console.log("as",data)
+
+  //SE GUARDA LA INFORMACION DE INICIO
+  localStorage.setItem("login", JSON.stringify(data))
   return data;
 };

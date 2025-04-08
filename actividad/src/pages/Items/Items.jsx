@@ -19,8 +19,8 @@ export default function Items() {
   }, [])
   
   const addList = async (nuevo) => {
-    await addItem(nuevo)
-    setList((prev) => [...prev, { ...nuevo, id: prev.length + 1 }]);
+    let response = await addItem(nuevo)
+    setList((prev) => [...prev, { ...nuevo, ID: response.ID}]);
   };
 
   const quitItem = async (del) => {
