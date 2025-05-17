@@ -11,7 +11,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/auth" element={<Auth/>}/>
+            <Route path="/auth/*" element={<Auth/>}/>
             <Route path = "/*" element= {<Core/>}/>
           </Routes>
         </BrowserRouter>

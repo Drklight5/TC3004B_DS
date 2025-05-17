@@ -15,7 +15,6 @@ app.use(express.json());
 
 app.use(routerIndex)
 app.use(routerLogin)
-app.use(routerItem)
 app.use(routerItem2)
 
-app.listen(5000, console.log("https://localhost:5000"))
+app.listen(5000, console.log("Start"))

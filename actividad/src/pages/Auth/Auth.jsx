@@ -1,51 +1,16 @@
-import { Button, FormControl, TextField } from "@mui/material";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../context/AuthContext";
-import { login } from "../../services/auth";
+// src/components/auth/Auth.jsx
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./Login";
+import Signup from "./SignUp";
 
 export default function Auth() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate()
-    const {logIn} = useAuthContext()
-
-    const LogIn = async  () =>{
-      if( email && password ){
-        let response = await login(email, password)
-        console.log(response)
-        if (response.user) {
-          logIn({email, password})
-          navigate("/home")
-        }
-        else{
-          alert("Credenciales incorrectas")
-        }
-        
-      } else{ alert("Introduce ambos datos") }
-
-    }
   return (
-    <div>
-      <FormControl>
-        <TextField
-          id="email"
-          label="Correo"
-          variant="standard"
-          defaultValue={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          id="password"
-          label="Contraseña"
-          variant="standard"
-          defaultValue={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button variant="contained" onClick={LogIn}>
-          Log In
-        </Button>
-      </FormControl>
-    </div>
+    <Routes>
+      {/* <Route index element={<Login />} /> ruta por defecto */}
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
+      {/* redireccionar rutas no válidas a login */}
+      <Route path="*" element={<Navigate to="login" />} />
+    </Routes>
   );
 }

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/item"; 
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 function getToken () {
@@ -13,7 +13,7 @@ const sharedHeaders = {
 };
 export const addItem = async (item) => {
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}item`, {
       method: "POST",
       headers: {...sharedHeaders},
       body: JSON.stringify(item),
@@ -32,7 +32,7 @@ export const addItem = async (item) => {
 export const deleteItem = async (id) => {
   console.log(id)
   try {
-    const response = await fetch(`${API_URL}/${id}`, {
+    const response = await fetch(`${API_URL}item/${id}`, {
       headers: { ...sharedHeaders },
       method: "DELETE",
     });
@@ -50,7 +50,7 @@ export const deleteItem = async (id) => {
 
 export const getItems = async () => {
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}item`, {
       headers: { ...sharedHeaders },
     });
 
